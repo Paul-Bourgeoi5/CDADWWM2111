@@ -1,0 +1,10 @@
+VARIABLES
+	int nb1, nb2
+	double result
+CODE
+	WRITE "Enter a first number"
+	READ nb1
+	WRITE "Enter a second number"
+	READ nb2
+	result <-- (nb1 + nb2) / 2
+	WRITE "The average of the two numbers is " + result + " !"

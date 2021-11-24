@@ -1,0 +1,29 @@
+FUNCTION
+
+    int[] split(sintrg _sentence, char _charWhoSplit)
+    
+    VARIABLE
+	
+        
+        
+
+VARIABLES
+
+string : userInputNumbers
+int : howManyNumbers, sumNumbers, countNumbers
+int[] : listNumbers
+float : average
+
+CODE
+
+write "enter numbers :"
+read userInputNumbers
+listNumbers <-- split(userInputNumbers, " ")
+howManyNumbers <-- listNumbers.length
+sumNumbers <-- 0
+
+for countNumbers from 0 to howManyNumbers-1
+    sumNumbers <-- sumNumbers + listNumbers[countNumbers]
+endfor
+average <-- sumNumbers / howManyNumbers
+write : "Average of " + userInputNumbers + " is " + average

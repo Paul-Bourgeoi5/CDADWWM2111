@@ -1,0 +1,15 @@
+VARIABLES
+	int nb1, nb2
+	double result
+	boolean redo
+CODE
+	DO
+		WRITE "Enter a first number"
+		READ nb1
+		WRITE "Enter a second number"
+		READ nb2
+		result <-- (nb1 + nb2) / 2
+		WRITE "The average of the two numbers is " + result + " !"
+		WRITE "Do you want to make an other calculation ? (0: no / 1: yes)"
+		READ redo
+	WHILE redo
