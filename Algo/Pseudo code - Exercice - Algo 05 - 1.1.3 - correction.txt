@@ -1,11 +1,38 @@
 FUNCTION
 
-    int[] split(sintrg _sentence, char _charWhoSplit)
+	// Commentaire : fonction qui permet de transformer une chaine de carractère
+	// avec des nombres séparés par un espace en un tableau statiques de nombres
+	int[] split(string _sentence, char _charWhoSplit)
     
-    VARIABLE
+	VARIABLE
 	
-        
-        
+		int: 	howManyInt, numbersCounter, charCounter
+		int[]:	listInt
+		string: numberInString
+		
+	CODE
+	
+		howManyInt <-- 0
+		FOR charCounter FROM 0 TO (_sentence.length - 1) THEN
+			IF _sentence[charCounter] == _charWhoSplit THEN
+				howManyInt <-- howManyInt + 1
+			END IF
+		END FOR
+		numbersCounter <-- 0
+		numberInString <-- ""
+		listInt[howManyInt]
+		FOR charCounter FROM 0 TO (_sentence.length - 1) THEN
+			IF _sentence[charCounter] != _charWhoSplit
+				numberInString <-- numberInString + _sentence[charCounter]
+			ENDIF
+			IF _sentence[charCounter] == _charWhoSplit OR charCounter == (_sentence.length - 1)
+				listInt[numbersCounter] <-- parseInt(numberInString)
+				numbersCounter <-- numbersCounter + 1
+				numberInString <-- ""
+			END IF
+		END FOR
+		RETURN listInt
+
 
 VARIABLES
 
