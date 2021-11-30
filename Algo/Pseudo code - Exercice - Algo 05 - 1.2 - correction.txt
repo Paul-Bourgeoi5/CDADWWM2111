@@ -1,0 +1,12 @@
+VARIABLES
+
+int:	rayon
+float:	air, volume
+
+CODE
+
+	WRITE 	"Entrez la valeur du rayon de la sphère :"
+	READ 	rayon
+	air 	<-- 4 * PI * R * R 
+	volume 	<-- 4 / 3 * PI * R * R * R 
+	WRITE 	"L'air de la sphère est " + air + " et le volume est " + volume

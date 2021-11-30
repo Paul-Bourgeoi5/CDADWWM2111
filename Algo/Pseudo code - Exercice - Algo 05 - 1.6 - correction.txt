@@ -1,0 +1,20 @@
+VARIABLES
+	int number
+	int divider
+	boolean isPrime
+
+CODE
+	isPrime <-- true
+	WRITE "Enter a number"
+	READ number
+	FOR divider STARTING FROM 2 TO number - 1 THEN
+		IF number % divider == 0 THEN
+			isPrime <-- false
+		END IF
+		I <-- I+1
+	END FOR
+	IF isPrime THEN
+		WRITE "This number is prime"
+	ELSE
+		WRITE "This number is not prime"
+	END IF

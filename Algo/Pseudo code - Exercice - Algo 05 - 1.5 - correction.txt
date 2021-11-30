@@ -1,0 +1,18 @@
+VARIABLES
+	float S
+	float I
+	int N
+	float IS
+	float IC
+
+CODE
+	WRITE "Ecrire  la valeur de la somme initiale" 
+	READ S
+	WRITE "Ecrire  la valeur de l'interet"
+	READ I
+	WRITE "Ecrire  la valeur du nombre d'année"
+	READ N
+	IS<--S(1+N*I)-S
+	WRITE "L'interet simple est de : " IS
+	IC<--S(1+I)^n-S	
+	WRITE "L'interet composé est de : " IC

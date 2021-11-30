@@ -1,0 +1,15 @@
+VARIABLES
+int : a
+int : b
+int : temp
+
+CODE
+
+	WRITE "Veuillez saisir un entier"
+	READ a
+	WRITE "Veuillez saisir un entier"
+	READ b
+	temp <-- a
+	A <-- b
+	B <-- temp
+	Write "a est devenu b"

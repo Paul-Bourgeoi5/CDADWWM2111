@@ -1,0 +1,84 @@
+Version AB
+VARIABLES
+	int a
+	int b
+
+CODE
+	WRITE "Nombre a : "	
+	READ a
+	WRITE "Nombre b : "
+	READ b
+
+	IF(a > b)
+		WRITE a + "plus grand que" + b	
+	ELSE
+		WRITE a + "plus petit que" + b	
+	END IF
+
+---------------------------------------------------
+Version ABC
+VARIABLES
+	int a
+	int b
+	int c
+
+CODE
+	WRITE "Nombre a : "	
+	READ a
+	WRITE "Nombre b : "
+	READ b
+	WRITE "Nombre c : "
+	READ c
+
+	IF(a < b)
+		IF(c < a)
+			WRITE c + "<" + a + "<" + b
+		ELSE 
+			IF (c<b)
+				WRITE a + "<" + c +"<" + b
+			ELSE
+				WRITE a + "<" + b +"<" + c
+			END IF
+		END IF
+	ELSE
+		IF(c < b)
+			WRITE c + "<" +b "<"+ a
+		ELSE 
+			IF c < a
+				WRITE b + "<" + c + "<" + a
+			ELSE
+				WRITE b + "<" + a + "<" + c
+			END IF
+		END IF
+	END IF
+
+-----------------------------------------------------------
+VERSION JULIEN
+
+VARIABLES
+	int a
+	int b
+	int c
+	int TEMP
+
+
+CODE
+	WRITE "Nombre a : "	
+	READ a
+	WRITE "Nombre b : "
+	READ b
+	WRITE "Nombre c : "
+	READ c
+							    							  							     ________________
+	WHILE a > b OR b > c       // formule de morgan  ==> a < b AND b < c
+		IF a > b THEN			 
+			temp <-- a
+			a <-- b
+		END IF
+		IF b > c THEN
+			temp <--b
+			b <-- c
+			c <-- temp
+		END IF
+	END WHILE
+	WHILE a + "<" b + "<" + c
