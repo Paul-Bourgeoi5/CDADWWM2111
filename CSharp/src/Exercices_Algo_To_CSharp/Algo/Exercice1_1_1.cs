@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Algo
 {
-    class Exercice1_1_1
+    static class Exercice1_1_1
     {
         public static void Run()
         {
@@ -13,9 +13,9 @@ namespace Algo
             double result;
 
             Console.WriteLine("Enter a first number");
-            nb1 = Int32.Parse(Console.ReadLine());
+            nb1 = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter a second number");
-            nb2 = Int32.Parse(Console.ReadLine());
+            nb2 = int.Parse(Console.ReadLine());
 
             result = (nb1 + nb2) / 2d;
 

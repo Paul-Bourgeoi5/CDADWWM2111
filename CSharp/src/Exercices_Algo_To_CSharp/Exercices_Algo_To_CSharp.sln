@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algo", "algo1_1_2\Algo.csproj", "{06A48F95-7E55-4142-92BB-20B33641EA06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algo", "Algo\Algo.csproj", "{2C6C2BEE-3A84-4955-9BA6-FD69AC5FC1BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{06A48F95-7E55-4142-92BB-20B33641EA06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06A48F95-7E55-4142-92BB-20B33641EA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06A48F95-7E55-4142-92BB-20B33641EA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06A48F95-7E55-4142-92BB-20B33641EA06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C6C2BEE-3A84-4955-9BA6-FD69AC5FC1BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C6C2BEE-3A84-4955-9BA6-FD69AC5FC1BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C6C2BEE-3A84-4955-9BA6-FD69AC5FC1BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C6C2BEE-3A84-4955-9BA6-FD69AC5FC1BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

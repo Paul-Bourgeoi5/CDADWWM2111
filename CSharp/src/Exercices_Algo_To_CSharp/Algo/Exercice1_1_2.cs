@@ -2,7 +2,7 @@
 
 namespace Algo
 {
-    class Exercice1_1_2
+    static class Exercice1_1_2
     {
         public static void Run()
         {
