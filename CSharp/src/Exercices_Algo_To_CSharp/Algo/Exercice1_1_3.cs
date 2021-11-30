@@ -18,7 +18,7 @@ namespace Algo
             int howManyInt;
             int numbersCounter;
             int[] arrayInt;
-            //StringBuilder : une chaine de caractères dont on peut modifier le contenu
+            // StringBuilder : une chaine de caractères dont on peut modifier le contenu
             StringBuilder numberInString;
 
             howManyInt = 1;
@@ -31,19 +31,23 @@ namespace Algo
             }
 
             numbersCounter = 0;
+            // avec string : numberInString = "";
             numberInString = new StringBuilder();
             arrayInt = new int[howManyInt];
             for (int charCounter = 0; charCounter < _sentence.Length; charCounter++)
             {
                 if (!_sentence[charCounter].Equals(_charWhichSplit))
                 {
+                    // avec string : numberInString = numberInString + _sentence[charCounter];
                     numberInString.Append(_sentence[charCounter]);
                 }
                 if (_sentence[charCounter].Equals(_charWhichSplit) || 
                         charCounter == (_sentence.Length -1))
                 {
+                    // avec string : arrayInt[numbersCounter] = int.Parse(numberInString);
                     arrayInt[numbersCounter] = int.Parse(numberInString.ToString());
                     numbersCounter = numbersCounter + 1;
+                    // avec string : numberInString = "";
                     numberInString.Clear();
                 }
             }
