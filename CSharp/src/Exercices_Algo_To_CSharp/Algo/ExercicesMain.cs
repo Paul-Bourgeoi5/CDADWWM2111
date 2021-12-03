@@ -8,8 +8,7 @@ namespace Algo
     {
         static void Main(string[] args)
         {
-            Exercice1_1_3.JuniorRun();
-            
+            Exercice2_1_2.Run();
         }
     }
 }
