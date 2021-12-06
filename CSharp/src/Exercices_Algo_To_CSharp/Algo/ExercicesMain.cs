@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Toto;
 
 namespace Algo
 {
@@ -8,7 +9,11 @@ namespace Algo
     {
         static void Main(string[] args)
         {
-            Exercice2_1_2.Run();
+            string userInput;
+            userInput = MaClasse.GetUserInput("Entrez un nombre entre X et Y ");
+
+
+            Console.Write(userInput);
         }
     }
 }
