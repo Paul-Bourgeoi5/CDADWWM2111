@@ -26,7 +26,7 @@ Code :
 			// Vérifier la saisie (nombre, unité?)
 			userInput = CheckUserInput(userInput)
 			// Ajouter saisie dans le tableau userInputs
-			AddUserInputToInputs(userInput, userInputs, index)
+			index <-- AddUserInputToInputs(userInput, userInputs, index)
 		END IF
 	WHILE(true)
 
