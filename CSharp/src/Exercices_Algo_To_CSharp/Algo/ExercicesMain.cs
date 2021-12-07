@@ -9,11 +9,7 @@ namespace Algo
     {
         static void Main(string[] args)
         {
-            string userInput;
-            userInput = MaClasse.GetUserInput("Entrez un nombre entre X et Y ");
-
-
-            Console.Write(userInput);
+            Exercice2_1_3.Run();
         }
     }
 }
