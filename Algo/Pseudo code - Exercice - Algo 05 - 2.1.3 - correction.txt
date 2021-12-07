@@ -1,0 +1,127 @@
+// Exercice 2_1_3
+
+Variables :
+	string : userInput, unit
+	double : distance
+	string[] : userInputs
+	const string : go, quit
+	int : index 
+	
+Code :
+	go <-- "go"
+	quit <-- "quit"
+	index <-- 0
+	DO
+		WRITE "Saisissez une distance avec son unité (\"km\" ou \"mi\") ou lancez la conversion avec \"go\" ou quitter le programme avec \"quit\""
+		READ userInput
+	
+		IF (userInput == quit)
+			QuitterProgramme()
+		END IF
+
+		IF (userInput == go)
+			// Lancer la conversion de toutes les saisies
+			ConvertAllPreviousInputs(userInputs)
+		ELSE
+			// Vérifier la saisie (nombre, unité?)
+			userInput = CheckUserInput(userInput)
+			// Ajouter saisie dans le tableau userInputs
+			AddUserInputToInputs(userInput, userInputs, index)
+		END IF
+	WHILE(true)
+
+
+FUNCTION:
+	void QuitterProgramme()
+	
+		Variables :
+		
+		Code :
+			WRITE "Bye bye"
+			Environnement.Exit(0)
+
+
+
+	void ConvertAllPreviousInputs(string[] inputs)
+		
+		Variables :
+			const string : miles
+			string[] : input
+			double resultConversion
+			int : index
+
+		Code :
+			miles <-- "mi"
+			FOR index FROM 0 TO inputs.Length
+				// mettre dans input la distance et l'unité séparés en 2 éléments de tableau (input[0] distance  et input[1] unité
+				input <-- inputs[index].Split(' ')
+				IF (input[0] est vide)
+					quitter la boucle
+				ELSE
+					IF (input[1] == miles) THEN
+						resultConversion < -- convertir de miles à kilometres
+						WRITE $"{input[0]} miles = {resultConversion} kilomètres"
+					ELSE
+						resultConversion < -- convertir de kilomètres à miles
+						WRITE $"{input[0]} kilomètres = {resultConversion} miles"	
+					END IF
+				END IF
+			END FOR
+
+	
+	string CheckUserInput(string userInput)
+		Variables :
+			string[] : splitInput
+			const string : kilometers, emptyString
+		
+		Codes :
+			miles <-- " km"
+			splitInput <-- userInput.Split(' ')
+			emptyString <-- ""
+			// Si l'entrée de l'utilisateur n'a pas d'unité, on lui ajoute l'unité kilomètre et on la renvoie, sinon on renvoie l'entrée de l'utilisateur directement
+			IF (splitInput .Length = 1)
+				return (userInput + kilometers)
+			ELSE
+				return userInput
+			END IF
+			IF (splitInput[0] n'est pas un nombre)
+				return emptyString
+			END IF
+
+
+
+
+
+	int AddUserInputToInputs(string userInput, string[] inputs, int index)
+		Variables :
+		
+		Code :
+			IF (userInput n'est pas vide)
+				inputs[index] <-- userInput
+				index++
+			END IF
+			Return index
+			
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
