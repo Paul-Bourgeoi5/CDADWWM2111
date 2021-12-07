@@ -65,8 +65,11 @@ FUNCTION:
 						resultConversion < -- convertir de kilomètres à miles
 						WRITE $"{input[0]} kilomètres = {resultConversion} miles"	
 					END IF
+					
 				END IF
 			END FOR
+			Vider inputs
+			
 
 	
 	string CheckUserInput(string userInput)
@@ -99,6 +102,9 @@ FUNCTION:
 			IF (userInput n'est pas vide)
 				inputs[index] <-- userInput
 				index++
+				IF (index == inputs.Length)
+					index <-- 0
+				END IF
 			END IF
 			Return index
 			
