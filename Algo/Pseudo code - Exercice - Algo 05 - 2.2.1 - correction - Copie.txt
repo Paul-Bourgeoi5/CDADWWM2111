@@ -1,0 +1,28 @@
+Variables :
+	double: temperature, resultat
+	string: saisie, unite
+	const double : minTemperature, maxTemperature
+	
+
+Code :
+	minTemperature <-- -459,67
+	maxTemperature <-- 5000000
+
+	DO 
+		WRITE "Saisir une température entre -459,67 et 5000000 espacée de son unité de mesure (C ou F) "
+		READ saisie
+	
+		temperature <-- temperature depuis la saisie (après conversion de string vers double)
+	WHILE temperature > maxTemperature OU temperature < minTemperature
+	
+	unite <-- unite depuis la saisie
+
+	IF unite == "C" THEN
+		resultat <-- (temperature*9/5) + 32
+		WRITE "La valeur est de " + resultat  + " degrés Fahrenheit"
+	
+	ELSE
+		resultat  <-- (temperature - 32) * 5 / 9
+		WRITE "La valeur est de " + resultat  + " degrés Celsius"
+	END IF
+

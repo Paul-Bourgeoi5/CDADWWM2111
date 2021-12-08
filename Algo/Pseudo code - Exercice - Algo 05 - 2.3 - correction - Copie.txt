@@ -1,0 +1,28 @@
+Variable :
+	int n, nombreDeNotreUtilisateur
+	bool echec
+
+Code :
+	n <-- RANDOM(0, 100)
+	echec <-- true
+	
+	DO
+		WRITE "Saisir un entier entre 0 et 100"
+		READ nombreDeNotreUtilisateur
+		
+		IF nombreDeNotreUtilisateur > 0 ET nombreDeNotreUtilisateur < 100 THEN
+			IF nombreDeNotreUtilisateur == n
+				WRITE "VOUS AVEZ GAGNÉ !!"
+				echec <-- false
+			ELSE
+				IF nombreDeNotreUtilisateur < n
+					WRITE "C'est plus"
+				ELSE
+					WRITE "C'est moins"
+				END IF
+			END IF
+		ELSE
+			WRITE "Saisir un nombre dans la bonne plage de valeurs, PLZ"
+		END IF
+	WHILE (echec)
+			

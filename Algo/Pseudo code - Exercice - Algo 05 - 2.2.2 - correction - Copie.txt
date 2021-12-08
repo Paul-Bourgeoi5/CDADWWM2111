@@ -1,0 +1,34 @@
+Variables :
+	int: temperature, minTemperature, maxTemperature, i
+	string: saisie, unite
+	const string : quit
+	double : resultat
+
+Code :
+	quit <-- "quit"
+
+	DO
+		WRITE "Entrez une unité entre degrés Celsius ou Fahrenheit (C ou F) ou quit pour quitter le programme"
+		READ unite
+
+		IF unite == quit THEN
+			WRITE "Bye bye"
+			quitter le programme
+		END IF
+
+		WRITE "Entre une temperature minimale à convertir "
+		READ minTemperature
+	
+		WRITE "Entre une temperature maximale à convertir (cette temperature est supérieure à la température minimale)"
+		READ maxTemperature
+	
+		FOR i FROM minTemperature TO maxTemperature
+			IF unite == "C" THEN
+				resultat <-- (i * 9 / 5) + 32
+				WRITE "La valeur est de " + resultat  + " degrés Fahrenheit"
+			ELSE
+				resultat  <-- (i - 32) * 5 / 9
+				WRITE "La valeur est de " + resultat  + " degrés Celsius"
+			END IF
+		END FOR
+	WHILE true

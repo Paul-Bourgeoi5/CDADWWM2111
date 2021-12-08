@@ -1,0 +1,15 @@
+// Barnabé fait ses courses
+
+Variables : 
+	float : s
+	int : compteurMagasins
+
+Code :	
+	compteurMagasins <-- 0
+	WRITE "Définir la somme de base de Barnabé "
+	READ s
+	WHILE s > 0
+		compteurMagasins<-- compteurMagasins+ 1
+		s <-- s/2 - 1
+	END WHILE	
+	WRITE "Barnabé a dépensé son argent dans " + compteurMagasins + " magasins"
