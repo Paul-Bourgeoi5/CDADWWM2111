@@ -1,0 +1,23 @@
+// 3.1 Rechercher un nombre dans un tableau (en moins de 20 minutes)
+
+Varibales :
+	int[] tableau
+	int N, i
+	bool pasTrouve
+	
+CODE :
+	pasTrouve <-- true
+	tableau <-- [0, 12, 15, 16, 17, 30, 35, 42, 72, 101, 218]
+	WRITE "Entrez un nombre entier à chercher"
+	READ N
+	
+	FOR i FROM 0 TO taille_du_tableau
+		IF tableau[i] == N
+			WRITE "Le nombre " + N + " est dans le tableau à l'indice " + i
+			pasTrouve <-- false
+		END IF
+	END FOR
+	
+	IF pasTrouve
+		WRITE "Le nombre " + N + " n'a pas été trouvé dans le tableau."
+	END IF

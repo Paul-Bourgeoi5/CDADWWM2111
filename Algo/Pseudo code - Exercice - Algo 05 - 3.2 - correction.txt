@@ -1,0 +1,34 @@
+// 3.2 Rechercher une lettre dans un chaine de caractères (12 minutes)
+
+Variables :
+	string stringToCheck
+	char searchedChar
+	bool notFound
+	int counter, i
+	
+CODE :
+	counter <-- 0
+	WRITE "Write a sentence finishing with a dot '.'"
+	READ stringToCheck
+	
+	IF stringToCheck[stringToCheck.Length -1] != '.'
+		stringToCheck <-- stringToCheck + '.'
+	END IF
+	
+	IF (stringToCheck == '.') THEN
+		Write "Empty string"
+	ELSE
+		WRITE "Type a letter to find in your previous sentence"
+		READ searchedChar
+		
+		FOR i FROM 0 TO stringToCheck.Length
+			IF (stringToCheck[i] == searchedChar)
+				counter <-- counter + 1
+			END IF
+		END FOR
+		IF counter > 0
+			WRITE searchedChar + " appears " + counter + " times in your sentence"
+		ELSE
+			WRITE "Not found"
+		END IF
+	END IF

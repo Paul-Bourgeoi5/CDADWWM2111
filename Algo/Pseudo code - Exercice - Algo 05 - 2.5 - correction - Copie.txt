@@ -1,0 +1,125 @@
+//2.5  Jeu du 0 - 2
+
+Variables :
+	int computerChoice, userChoice, countUser, countComputer
+	
+Code :
+	countUser <-- 0
+	countComputer <--0
+
+	DO
+		// Pour des RANDOM en C#: https://docs.microsoft.com/fr-fr/dotnet/api/system.random?view=net-6.0
+	computerChoice <-- RANDOM(0, 2) //2 inclus
+	
+		WRITE "Choose a move to play between 0, 1 or 2. Enter a negative number to quit"
+		READ userChoice
+	
+		IF userChoice is negative THEN
+			Quit program
+		ELSE
+			WRITE "Computer choice was : " + computerChoice
+ 			Check if the user or the computer win this round and score points
+			// ItsTimeToDuel(userChoice, userCounter, computerChoice, computerCounter)
+		
+			WRITE "Computer score : " + countComputer+ "  ; user score : " + countUser
+		END IF
+	WHILE (CheckNoVictory(userCounter, computerCounter))
+
+
+
+
+Function :
+	void ItsTimeToDuel(int _userChoice, int _userCounter, int _computerChoice, int _computerCounter)
+	
+	Variables : 
+		int diff
+		
+	Code :	
+		diff <-- _userChoice - _computerChoice
+		SWITCH diff
+		CASE 2:
+			WRITE "Point to the user"
+			_userCounter <-- _userCounter + 1
+			BREAK
+		CASE -2:
+			WRITE "Point to the computer
+			_computerCounter <-- _computerCounter + 1
+			BREAK
+		CASE 1:
+			WRITE "Point to the computer
+			_computerCounter <-- _computerCounter + 1
+			BREAK
+		CASE -1:
+			WRITE "Point to the user"
+			_userCounter <-- _userCounter + 1
+			BREAK
+		DEFAULT:
+			WRITE "DRAW !"
+			BREAK
+
+
+
+	bool CheckNoVictory(int _userCounter, int _computerCounter)
+	Variables:
+		const int victoryScore
+	Code :
+		victoryScore <-- 10
+		
+		IF (_userCounter == victoryScore) THEN
+			WRITE "User wins !"
+			return false
+		ELSE
+			IF (_computerCounter == victoryScore THEN
+				WRITE "Computer wins !"
+				return false
+			ELSE
+				return true
+			END IF
+		END IF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

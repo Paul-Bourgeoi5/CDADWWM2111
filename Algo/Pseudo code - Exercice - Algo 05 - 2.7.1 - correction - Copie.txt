@@ -1,0 +1,56 @@
+// calculer le nombre de jeunes
+
+Variables :
+	const int twenty
+	int[] peopleAge	
+	int i, youngCounter
+
+Code :
+	youngCounter <-- 0
+	twenty <-- 20
+	peopleAge <-- int[twenty]
+	
+	WRITE "Enter the age of " + twenty + " persons one after another"
+	FOR i FROM 0 TO twenty 
+		READ peopleAge[i]
+	END FOR
+	
+	FOR i FROM 0 TO peopleAge.Length
+		IF peopleAge[i] < twenty THEN
+			youngCounter <-- youngCounter + 1
+		END IF
+	END FOR
+	WRITE "There are " + youngCounter + " young among the people"
+
+
+
+
+
+VERSION OPTI(Z'onions)
+
+
+Variables :
+	const int twenty
+	int i, youngCounter
+
+Code :
+	youngCounter <-- 0
+	twenty <-- 20
+	peopleAge <-- int[twenty]
+	
+	WRITE "Enter the age of " + twenty + " persons one after another"
+	FOR i FROM 0 TO twenty 
+		IF READ < twenty THEN
+			youngCounter <-- youngCounter + 1
+		END IF
+	END FOR
+
+	WRITE "There are " + youngCounter + " young among the people"
+
+
+
+
+
+
+
+
