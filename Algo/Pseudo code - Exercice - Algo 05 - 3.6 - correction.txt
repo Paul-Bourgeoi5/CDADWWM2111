@@ -1,0 +1,88 @@
+// 3.6 Jeu du pendu
+
+Variables :
+	string wordToFind
+	char[] foundLetters
+	char suggestedLetter
+	const int maxAttempts
+	const int minWordLength
+	int attemptsCounter, i
+	bool noVictory, noMistake
+	
+CODE :
+	attemptsCounter <--0
+	noVictory <-- true
+	minWordLength <-- 5
+	maxAttempts <-- 6
+	
+	DO
+		WRITE "Enter a word with " + minWordLength + " or more characters"
+		READ wordToFind
+	WHILE(wordToFind.Length < minWordLength)
+	
+	foundLetters <-- FirstAndLastLetterOfWord(wordToFind)
+	
+	WRITE foundLetters
+	
+	DO
+		noMistake <-- false
+		WRITE "Enter a letter, please"
+		READ suggestedLetter
+		
+		FOR i FROM 0 TO wordToFind.Length
+			IF suggestedLetter == wordToFind[i] THEN
+				foundLetters[i] <-- suggestedLetter
+				noMistake <-- true
+			END IF
+		END FOR
+		
+		IF NOT noMistake THEN
+			attemptsCounter <-- attemptsCounter + 1
+		END IF
+		
+		IF foundLetters == wordToFind THEN
+			noVictory <-- false
+			WRITE "You win. The word was : " + wordToFind
+		ELSE
+			WRITE foundLetters + "   Attempts left : " + maxAttempts - attemptsCounter
+		END IF
+		
+		
+	WHILE(attemptsCounter < maxAttempts && noVictory)
+	IF (attemptsCounter >= maxAttempts)
+			WRITE "FAILED"
+	END IF
+	
+	
+	FUNCTION : 
+		char[] FirstAndLastLetterOfWord(string word)
+			
+			Variables : 
+				char[] result
+				const string dash
+				int i
+				
+			Code :
+				dash <-- '-'
+				result[0] <-- word[0]
+				result[word.Length-1] <-- word[word.Length-1]
+				
+				FOR i FROM 1 TO word.Length -1
+					result[i] <-- dash
+				END FOR
+				
+				return result
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
