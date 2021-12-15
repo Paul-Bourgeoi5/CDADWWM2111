@@ -9,7 +9,7 @@ namespace Algo
     {
         static void Main(string[] args)
         {
-            Exercice2_1_3.Run();
+            Exercice3_6.Run();
         }
     }
 }
