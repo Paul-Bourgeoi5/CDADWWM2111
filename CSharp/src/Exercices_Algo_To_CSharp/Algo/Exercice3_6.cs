@@ -31,6 +31,7 @@ namespace Algo
                 wordToFind = Console.ReadLine();
 
             } while (wordToFind.Length < minWordLength);
+            Console.Clear();
 
             foundLetters = FirstAndLastLetterOfWord(wordToFind);
 
