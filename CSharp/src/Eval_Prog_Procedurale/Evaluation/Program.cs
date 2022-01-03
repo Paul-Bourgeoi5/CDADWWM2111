@@ -10,7 +10,8 @@ namespace Evaluation
     {
         static void Main(string[] args)
         {
-            PascalTriangle.DisplayNthPascalineLine(5);
+            Console.WriteLine("Merry Christmas");
+            PascalTriangle.DisplayPascalTriangle(25);
         }
     }
 }
