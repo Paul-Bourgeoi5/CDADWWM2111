@@ -20,8 +20,8 @@ namespace Vehicules
 
         public bool Moteur
         {
-            get { return _moteur; }
-            set { _moteur = value; }
+            get => _moteur;
+            set => _moteur = value;
         }
 
         public VoitureBasique()
