@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Points
+namespace Geometrie
 {
+    /// <summary>
+    /// Classe qui représente un point dans un espace à 3 dimensions.
+    /// </summary>
     class Point3D : Point2D
     {
         private int _z;
@@ -13,7 +16,7 @@ namespace Points
         public int Z
         {
             get { return _z; }
-            init { _z = value; }
+            set { _z = value; }
         }
 
         public Point3D() : base()
@@ -21,14 +24,14 @@ namespace Points
             Z = 0;
         }
 
-        public Point3D(int x, int y, int z):base(x, y)
+        public Point3D(int x, int y, int z) : base(x, y)
         {
             Z = z;
         }
 
         public override string ToString()
         {
-            return ($"Le point a les coordonnées ({X}, {Y}, {Z})"); ;
+            return $"({X}, {Y}, {Z})"; ;
         }
     }
 }

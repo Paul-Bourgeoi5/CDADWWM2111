@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vehicules", "Vehicules.csproj", "{AB94465B-195E-4DFA-B29C-8874331BB1E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Points", "..\Points\Points.csproj", "{A7FFB243-2426-4CA5-A7E5-DC61BBC07F95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geometrie", "..\Points\Geometrie.csproj", "{A7FFB243-2426-4CA5-A7E5-DC61BBC07F95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temperatures", "..\Temperatures\Temperatures.csproj", "{7C28638D-1857-4D46-897E-E98AE3327D31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A7FFB243-2426-4CA5-A7E5-DC61BBC07F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7FFB243-2426-4CA5-A7E5-DC61BBC07F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7FFB243-2426-4CA5-A7E5-DC61BBC07F95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C28638D-1857-4D46-897E-E98AE3327D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C28638D-1857-4D46-897E-E98AE3327D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C28638D-1857-4D46-897E-E98AE3327D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C28638D-1857-4D46-897E-E98AE3327D31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
