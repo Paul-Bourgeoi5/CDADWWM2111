@@ -29,7 +29,7 @@ namespace Exercice1StyloTrousse
                     if (this.Affaires.Count < this.NombreOutilsMax)
                     {
                         this.Affaires.Add(outilARanger);
-                        Console.WriteLine($"{outilARanger.GetType()} ajouté.");
+                        Console.WriteLine($"{outilARanger.GetType().Name} ajouté.");
                     }
                     else
                     {
@@ -44,7 +44,7 @@ namespace Exercice1StyloTrousse
             }
             else
             {
-                Console.WriteLine($"La trousse est fermée. Je ne peux pas y ranger ce {outilARanger.GetType()}.");
+                Console.WriteLine($"La trousse est fermée. Je ne peux pas y ranger ce {outilARanger.GetType().Name}.");
             }
 
         }
@@ -56,7 +56,7 @@ namespace Exercice1StyloTrousse
                 if (this.Affaires.Contains(outilASortir))
                 {
                     this.Affaires.Remove(outilASortir);
-                    Console.WriteLine($"{outilASortir.GetType()} sorti.");
+                    Console.WriteLine($"{outilASortir.GetType().Name} sorti.");
                 }
                 else
                 {
@@ -75,7 +75,7 @@ namespace Exercice1StyloTrousse
             StringBuilder result = new();
             foreach (OutilEcriture outil in this.Affaires)
             {
-                result.Append(outil.GetType() + " avec une capacité de : " + outil.CapaciteEcriture +  "% de couleur : " + outil.Couleur + "\n");
+                result.Append(outil.GetType().Name + " avec une capacité de : " + outil.CapaciteEcriture +  "% de couleur : " + outil.Couleur + "\n");
             }
 
             return result.ToString();
