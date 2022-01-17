@@ -80,7 +80,7 @@ namespace Geometrie
             Y = y;
         }
 
-        public void DeplacerDe(int nombreADeplacerX, int nombreADeplacerY)
+        public void DeplacerDe(int nombreADeplacerX = 0, int nombreADeplacerY = 0)
         {
             X = X + nombreADeplacerX;
             Y = Y + nombreADeplacerY;

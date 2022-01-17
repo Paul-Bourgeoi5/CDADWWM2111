@@ -10,6 +10,7 @@ namespace Geometrie
 
             Point2D p1 = new Point2D(3, 2);
             Point2D p2 = new Point2D(4, 4);
+
             Segment2D segment1 = new Segment2D(p1, p2);
             Segment2D segment2 = new Segment2D(2, 2, -6, -4);
             /*Console.WriteLine(p1.ToString());
