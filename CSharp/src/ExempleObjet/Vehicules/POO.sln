@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geometrie", "..\Points\Geom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Temperatures", "..\Temperatures\Temperatures.csproj", "{7C28638D-1857-4D46-897E-E98AE3327D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice1StyloTrousse", "..\Exercice1StyloTrousse\Exercice1StyloTrousse.csproj", "{8A2ACB23-0353-42C5-B977-0AD6FBBE4851}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice1StyloTrousse", "..\Exercice1StyloTrousse\Exercice1StyloTrousse.csproj", "{8A2ACB23-0353-42C5-B977-0AD6FBBE4851}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice3PoupeeRusse", "..\Exercice3PouPeeRusse\Exercice3PoupeeRusse.csproj", "{39D6A1C9-E1E4-42CF-A969-FBCB951D309F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8A2ACB23-0353-42C5-B977-0AD6FBBE4851}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A2ACB23-0353-42C5-B977-0AD6FBBE4851}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A2ACB23-0353-42C5-B977-0AD6FBBE4851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39D6A1C9-E1E4-42CF-A969-FBCB951D309F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39D6A1C9-E1E4-42CF-A969-FBCB951D309F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39D6A1C9-E1E4-42CF-A969-FBCB951D309F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39D6A1C9-E1E4-42CF-A969-FBCB951D309F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
