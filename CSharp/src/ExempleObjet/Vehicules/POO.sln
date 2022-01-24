@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice1StyloTrousse", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice3PoupeeRusse", "..\Exercice3PouPeeRusse\Exercice3PoupeeRusse.csproj", "{39D6A1C9-E1E4-42CF-A969-FBCB951D309F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice4Montres", "..\Exercice4Montres\Exercice4Montres.csproj", "{F19FF96B-92EB-4350-A0DD-EDEC67426874}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{39D6A1C9-E1E4-42CF-A969-FBCB951D309F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39D6A1C9-E1E4-42CF-A969-FBCB951D309F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39D6A1C9-E1E4-42CF-A969-FBCB951D309F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19FF96B-92EB-4350-A0DD-EDEC67426874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19FF96B-92EB-4350-A0DD-EDEC67426874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19FF96B-92EB-4350-A0DD-EDEC67426874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19FF96B-92EB-4350-A0DD-EDEC67426874}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
