@@ -10,6 +10,11 @@ namespace SujetExamen
     {
         private List<Reponse> _reponses;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e">Enoncé</param>
+        /// <param name="d">Difficulté</param>
         public QuestionAChoixMultiple(string e,int d) :base(e,d)
         {
             this._reponses = new List<Reponse>();

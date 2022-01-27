@@ -17,7 +17,29 @@ namespace SujetExamen
 
         public string AfficherSujetComplet()
         {
-            return "";
+            string sujetComplet = "";
+            int numeroQuestion = 1;
+            
+            foreach (KeyValuePair <Question,int> question in _questions)
+            {
+                Question questionEncours = question.Key;
+
+                sujetComplet += numeroQuestion + ") " + questionEncours.Enonce + Environment.NewLine;
+
+                if(questionEncours is QuestionAChoixMultiple maQuestion)
+                {
+                    foreach(Reponse reponseEnCours in maQuestion.Reponses)
+                    {
+                        sujetComplet += "\t" + reponseEnCours.Enonce + Environment.NewLine;
+                    }
+
+                    sujetComplet += Environment.NewLine;
+                }
+
+                numeroQuestion++;
+            }
+
+            return sujetComplet;
         }
 
         public Dictionary<Question, int> GetQuestions() 
@@ -50,5 +72,6 @@ namespace SujetExamen
 
             return (float)totalDifficulteQuestions/(float)this._questions.Count;
         }
+
     }
 }
