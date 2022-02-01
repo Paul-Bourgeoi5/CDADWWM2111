@@ -15,7 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice3PoupeeRusse", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice4Montres", "..\Exercice4Montres\Exercice4Montres.csproj", "{F19FF96B-92EB-4350-A0DD-EDEC67426874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SujetExamen", "..\SujetExamen\SujetExamen.csproj", "{C41C82B1-9D63-41AE-96D4-E0DA883ABE24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SujetExamen", "..\SujetExamen\SujetExamen.csproj", "{C41C82B1-9D63-41AE-96D4-E0DA883ABE24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ONF", "..\ONF\ONF.csproj", "{443E0CD8-A879-4B45-8D86-7CF8ACDD4DD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdaExceptions", "..\CdaExceptions\CdaExceptions.csproj", "{7138B2D8-DD27-4345-8354-A81222E6F5D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{C41C82B1-9D63-41AE-96D4-E0DA883ABE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C41C82B1-9D63-41AE-96D4-E0DA883ABE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C41C82B1-9D63-41AE-96D4-E0DA883ABE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{443E0CD8-A879-4B45-8D86-7CF8ACDD4DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{443E0CD8-A879-4B45-8D86-7CF8ACDD4DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443E0CD8-A879-4B45-8D86-7CF8ACDD4DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{443E0CD8-A879-4B45-8D86-7CF8ACDD4DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7138B2D8-DD27-4345-8354-A81222E6F5D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7138B2D8-DD27-4345-8354-A81222E6F5D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7138B2D8-DD27-4345-8354-A81222E6F5D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7138B2D8-DD27-4345-8354-A81222E6F5D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
