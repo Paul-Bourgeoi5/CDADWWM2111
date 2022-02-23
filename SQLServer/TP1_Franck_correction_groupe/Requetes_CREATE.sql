@@ -46,3 +46,17 @@ BEGIN
 	ALTER TABLE EMP
 	ADD CONSTRAINT CK_EMP_JOB CHECK (JOB IN ('SALESMAN', 'PRESIDENT', 'MANAGER', 'ANALYST', 'CLERK'));
 END
+
+IF NOT EXISTS ( SELECT * FROM sys.sysobjects where name = 'PROJET' AND xtype = 'U')
+BEGIN 
+	CREATE TABLE PROJET(
+	PROJNO INT IDENTITY(101,1),
+	PROJNAME VARCHAR(5) NOT NULL,
+	BUDGET INT NOT NULL);
+END
+
+IF NOT EXISTS (SELECT * from sys.sysobjects WHERE name = 'PK_PROJET' AND xtype = 'PK')  -- xtype = 'PK' => le type des objets cherchés est le type contrainte de type clé primaire
+BEGIN
+	ALTER TABLE PROJET
+	ADD CONSTRAINT PK_PROJET PRIMARY KEY (PROJNO);
+END
