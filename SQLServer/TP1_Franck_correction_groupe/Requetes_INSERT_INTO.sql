@@ -1,12 +1,13 @@
 USE TP1_Franck;
-
+GO
 -- S'il n'y a aucune données dans les tablse DEPT et EMP alors je les remplis avec mes INSERT INTO
 IF NOT EXISTS (SELECT * FROM DEPT, EMP)
 BEGIN
+	-- On commence par les INSERT dans la table département car elle n'a pas de clé étrangère
 	INSERT INTO DEPT (DEPTNO, DNAME, LOC)
 	VALUES (10, 'ACCOUNTING', 'NEW YORK'), (20, 'RESEARCH', 'DALLAS'), (30, 'SALES', 'CHICAGO'), (40, 'OPERATIONS', 'BOSTON');
 
-	-- Fill Employee table
+	-- Pour les INSERT des employés, on prend soin de faire en sorte que les clés étrangères de manager existent déjà. C'est pour cela qu'on commence par insérer KING qui est manager de BLAKE et CLARK, qui sont manager de ...
 	INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
 	VALUES
 	(7839,	'KING',		'PRESIDENT',	NULL,	'1981-11-17',	5000,	NULL,	10),

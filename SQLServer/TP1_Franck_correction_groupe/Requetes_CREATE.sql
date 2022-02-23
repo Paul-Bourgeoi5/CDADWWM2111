@@ -10,7 +10,7 @@ USE TP1_Franck;
 GO
 
 -- Créer la table DEPT si inexistante
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = 'DEPT' AND xtype = 'U')
+IF NOT EXISTS (SELECT * FROM sys.sysobjects WHERE name = 'DEPT' AND xtype = 'U')
 BEGIN
 	CREATE TABLE DEPT
 	(DEPTNO TINYINT NOT NULL,
@@ -22,7 +22,7 @@ END
 
 
 -- Créer la table EMP si inexistante
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = 'EMP' AND xtype = 'U')
+IF NOT EXISTS (SELECT * FROM sys.sysobjects WHERE name = 'EMP' AND xtype = 'U') -- xtype = 'U' => le type des objets cherchés est le type Table
 BEGIN
 	CREATE TABLE EMP
 	(EMPNO SMALLINT NOT NULL,
@@ -37,4 +37,12 @@ BEGIN
 	CONSTRAINT FK_EMP_DEPT FOREIGN KEY (DEPTNO) REFERENCES DEPT (DEPTNO),
 	CONSTRAINT FK_EMP_MGR FOREIGN KEY (MGR) REFERENCES EMP (EMPNO)
 	);
+END
+
+
+-- Ajout d'une contrainte check sur les job des employés. Cela force les entrées de job à avoir les valeurs spécifiées
+IF NOT EXISTS (SELECT * from sys.sysobjects WHERE name = 'CK_EMP_JOB' AND xtype = 'C')  -- xtype = 'C' => le type des objets cherchés est le type contrainte de type check
+BEGIN
+	ALTER TABLE EMP
+	ADD CONSTRAINT CK_EMP_JOB CHECK (JOB IN ('SALESMAN', 'PRESIDENT', 'MANAGER', 'ANALYST', 'CLERK'));
 END
