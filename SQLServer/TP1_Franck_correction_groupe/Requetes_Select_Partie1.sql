@@ -154,16 +154,27 @@ WHERE SAL > (SELECT AVG(SAL)FROM EMP)
 -- 102, BETA,	82000
 -- 103, GAMMA,	15000
 
---VOIR AUTRE FICHIER
+--VOIR AUTRES FICHIERS
  
 -- 19.	Ajouter l'attribut numéro de projet à la table EMP et affecter tous les vendeurs du département 30 au projet 101, et les autres au projet 102
 
+-- VOIR AUTRES FICHIERS
 
 -- 20.	 Créer une vue comportant tous les employés avec nom, job, nom de département et nom de projet
 
+USE TP1_Franck;
+
+CREATE VIEW employees_info AS
+	SELECT e.ENAME, e.JOB, d.DNAME, p.PROJNAME FROM EMP AS e
+	INNER JOIN DEPT AS d ON d.DEPTNO = e.DEPTNO
+	INNER JOIN PROJET AS p ON p.PROJNO = e.PROJNO;
+
 -- 21.	A l'aide de la vue créée précédemment, lister tous les employés avec nom, job, nom de département et nom de projet triés sur nom de département et nom de projet
 
+SELECT * FROM employees_info
+	ORDER BY DNAME, PROJNAME;
 
 
 -- 22.	Donner le nom du projet associé à chaque manager
+SELECT PROJNAME FROM employees_info WHERE JOB = 'MANAGER';
 
