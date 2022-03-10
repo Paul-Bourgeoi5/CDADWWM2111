@@ -94,9 +94,84 @@ inner join pilotes on vols.pilote=pilotes.pil
 inner join avions on vols.avion= avions.av
 where marque='AIRBUS' and pilotes.adresse <> avions.localisation
 
-10	Quels sont les vols ayant un trajet identique ( VD, VA ) à ceux assurés par Serge ?
-11	Donner toutes les paires de pilotes habitant la même ville ( sans doublon ).
-12	Quels sont les noms des pilotes qui conduisent un avion que conduit aussi le pilote n°1 ?
-13	Donner toutes les paires de villes telles qu'un avion localisé dans la ville de départ soit conduit par un pilote résidant dans la ville d'arrivée.
-14	Sélectionner les numéros des pilotes qui conduisent tous les Airbus ?
+-- 10	Quels sont les vols ayant un trajet identique ( VD, VA ) à ceux assurés par Serge ?
+
+-- Cette version est incomplète car un vol de Paris à Paris serait accepté alors que Serge ne fait pas ce trajet
+SELECT vols.vol, vols.vd, vols.va 
+FROM vols 
+WHERE vd IN (
+	SELECT vols.vd 
+	FROM vols INNER JOIN pilotes 
+	ON pilotes.pil = vols.pilote 
+	WHERE pilotes.nom = 'serge')
+AND va IN (
+	SELECT vols.va 
+	FROM vols INNER JOIN pilotes 
+	ON pilotes.pil = vols.pilote 
+	WHERE pilotes.nom = 'serge');
+
+
+-- Version avec double jointure interne
+DECLARE @SergeNumber VARCHAR(10);
+SELECT @SergeNumber=pil from pilotes where nom = 'serge' 
+SELECT main.vol, main.vd, main.va 
+FROM vols as main
+INNER JOIN vols AS depart ON depart.vd = main.vd
+INNER JOIN vols AS arrivee ON arrivee.va = main.va
+WHERE depart.pilote = @SergeNumber
+AND arrivee.pilote = @SergeNumber
+AND arrivee.vol = depart.vol
+
+-- version avec jointure croisée où on ne gardera que les lignes avec les vols de Serge dans la seconde table
+SELECT main.vol, main.vd, main.va 
+FROM vols as main
+CROSS JOIN vols as VolsSerge
+WHERE VolsSerge.pilote = (SELECT pil FROM pilotes WHERE nom = 'SERGE')
+AND main.vd = VolsSerge.vd 
+AND main.va = VolsSerge.va
+
+
+-- 11	Donner toutes les paires de pilotes habitant la même ville ( sans doublon ).
+SELECT a.nom, b.nom FROM pilotes as a INNER JOIN pilotes AS b ON a.adresse = b.adresse 
+WHERE a.pil <> b.pil AND a.nom < b.nom
+
+SELECT a.nom, b.nom FROM pilotes as a INNER JOIN pilotes AS b ON a.adresse = b.adresse 
+WHERE a.pil < b.pil 
+
+-- 12	Quels sont les noms des pilotes qui conduisent un avion que conduit aussi le pilote n°1 ?
+SELECT DISTINCT nom,pil FROM pilotes AS p INNER JOIN vols AS v ON p.pil = v.pilote WHERE v.avion in 
+(SELECT avion FROM vols WHERE pilote=1);
+
+-- 13	Donner toutes les paires de villes telles qu'un avion localisé dans la ville de départ soit conduit par un pilote résidant dans la ville d'arrivée.
+
+SELECT
+	v.vd AS ville_depart,
+	v.va AS ville_arrivee
+	FROM vols AS v
+	INNER JOIN avions AS a ON v.avion = a.av
+	INNER JOIN pilotes AS p ON v.pilote = p.pil
+	WHERE a.localisation = v.vd AND p.adresse = v.va;
+	 
+
+-- 14	Sélectionner les numéros des pilotes qui conduisent tous les Airbus ?
+Select vols.pilote 
+From VOLs
+WHERE VOLs.avion in(SELECT avions.av FROM AVIONs WHERE avions.marque='airbus') -- que les airbus
+group By Vols.pilote 
+having (((count(distinct vols.avion))=(SELECT count(av) from avions where avions.marque='airbus'))) -- On compare le nombre d'avions pilotés par un pilote par rapport au nombre total d'airbus
+
+-- Sélectionner les numéros des pilotes qui ne conduisent que des Airbus ?
+SELECT pilote
+FROM vols
+EXCEPT
+SELECT pilote
+FROM vols
+WHERE avion IN (SELECT av FROM avions WHERE marque <> 'AIRBUS')
+
+
+-- Sélectionner les numéros des pilotes qui conduisent au moins 1 Airbus ?
+SELECT DISTINCT pilote
+FROM vols
+WHERE avion IN (SELECT av FROM avions WHERE marque ='AIRBUS')
+
 
