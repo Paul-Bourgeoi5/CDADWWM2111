@@ -22,7 +22,7 @@ ext_img nvarchar(5)NOT NULL);
 ALTER TABLE realisations
 DROP COLUMN id_rea
 ALTER TABLE realisations
-ADD id_rea_temp INT NOT NULL IDENTITY;
+ADD id_rea INT NOT NULL IDENTITY;
 ALTER TABLE realisations
 ADD CONSTRAINT PK_id_rea PRIMARY KEY (id_rea);
 
@@ -81,4 +81,63 @@ ALTER TABLE realisations
 ADD img_id INT NOT NULL;   
 ALTER TABLE realisations
 ADD CONSTRAINT FK_realisations_img_id FOREIGN KEY (img_id) REFERENCES images (id_img); 
+
+
+
+--5) Donner en sql (SQL server) les commandes qui permettent de modifier ou créer les tables nécessaires avec les contraintes éventuelles de clésprimaires et étrangères. (id réalisation auto incrément)
+
+-- Creation de la table illustrer.
+CREATE TABLE illustrer
+( id_rea INT NOT NULL,
+id_img INT NOT NULL,
+CONSTRAINT PK_illustrer_id PRIMARY KEY (id_rea, id_img),
+CONSTRAINT FK_illustrer_id_rea FOREIGN KEY (id_rea)
+REFERENCES realisations(id_rea),
+CONSTRAINT FK_illustrer_id_img FOREIGN KEY (id_img)
+REFERENCES images(id_img));
+
+-- suppression dans la table realisation de la clé étrangère vers Images et de la colonne img_id.
+ALTER TABLE realisations
+DROP CONSTRAINT FK_realisations_img_id;
+ALTER TABLE realisations
+DROP COLUMN img_id;
+
+--1)   Donner   dans   ce   cas   la   requête   qui   pour   une   réalisation   données(«id_rea» fixée) permet  de trouver toutes les images associées...
+
+DECLARE @id_rea_fixee INT;
+SET @id_rea_fixee = 42;
+
+SELECT images.id_img, url_img, nom_img, ext_img, text_img
+FROM images
+	INNER JOIN illustrer ON illustrer.id_img = images.id_img
+WHERE id_rea = @id_rea_fixee;
+
+--Alternative
+SELECT images.id_img, url_img, nom_img, ext_img, text_img
+FROM images
+WHERE id_img = (SELECT id_img FROM illustrer WHERE id_rea = 42);
+
+GO
+CREATE PROCEDURE afficheImg
+	@afficheUnTruc INT
+AS
+SELECT images.nom_img, illustrer.id_img
+FROM illustrer
+	INNER JOIN images ON illustrer.id_img = images.id_img
+WHERE id_rea = @afficheUnTruc;
+
+--2) Donner la procédure stockée qui permet de savoir combien de fois une image est utilisée dans les différentes réalisations en fonction du nom de l’image (nom_img)
+GO
+CREATE PROCEDURE nb_utilisation_image
+	@nom_image_a_compter NVARCHAR(100)
+AS
+SELECT COUNT(nom_img) AS NOMBRE_IMAGES
+FROM images
+	INNER JOIN illustrer ON illustrer.id_img = images.id_img
+WHERE nom_img = @nom_image_a_compter;
+GO
+
+EXEC nb_utilisation_image N'MonImageAuPif';
+
+GO
 
