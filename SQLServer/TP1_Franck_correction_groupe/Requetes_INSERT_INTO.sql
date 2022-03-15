@@ -61,3 +61,93 @@ WHEN 30 THEN 101
 ELSE 102
 END
 */
+
+
+IF EXISTS (SELECT 1 FROM sys.sysobjects WHERE name = 'IsSalGreaterThanCEOs' and xtype = 'P')
+BEGIN
+	DROP PROCEDURE IsSalGreaterThanCEOs;
+END
+GO
+CREATE PROCEDURE IsSalGreaterThanCEOs
+	@ComparedSal MONEY
+AS
+BEGIN
+	DECLARE @result BIT;
+	IF (@ComparedSal >= ALL (SELECT MIN(SAL) FROM EMP WHERE MGR IS NULL AND JOB = 'PRESIDENT'))
+	BEGIN
+		SET @Result = 1;
+	END
+	ELSE
+	BEGIN
+		SET @Result = 0;
+	END
+	RETURN @Result;
+END
+GO
+
+
+
+IF EXISTS (SELECT 1 FROM sys.triggers WHERE Name = 'NewEmployeeHasSalLowerThanCeo')
+BEGIN
+	DROP TRIGGER NewEmployeeHasSalLowerThanCeo;
+END
+GO
+CREATE TRIGGER NewEmployeeHasSalLowerThanCeo
+ON EMP
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @NewEmployeeSal MONEY;
+	DECLARE @NewEmployeeMGR SMALLINT;
+	DECLARE @IsNewEmployeeSalHigh BIT;
+	SELECT @NewEmployeeSal = Inserted.SAL, 
+		@NewEmployeeMGR = Inserted.MGR 
+	FROM Inserted;
+	EXEC @IsNewEmployeeSalHigh = IsSalGreaterThanCEOs @NewEmployeeSal;
+	IF (@NewEmployeeMGR IS NOT NULL AND @IsNewEmployeeSalHigh = 1)
+	BEGIN
+		ROLLBACK TRANSACTION
+		PRINT('Le nouvel employé ne peut pas avoir un salaire supérier à celui du plus haut manageur à moins d''être de même rang.');
+	END
+	ELSE
+	BEGIN
+		PRINT('Nouvel employé enregistré');
+	END
+END
+GO
+
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
+VALUES
+(9998,	'Nouveau Employe',		'SALESMAN',	7839,	'1981-11-17',	2,	400,	10);
+
+GO
+DROP TRIGGER NewEmployeeCanNotHaveExistingName
+GO
+CREATE TRIGGER NewEmployeeCanNotHaveExistingName
+ON EMP
+FOR INSERT
+AS
+BEGIN
+	DECLARE @NewEmployeeName VARCHAR(20);
+	SELECT @NewEmployeeName = inserted.ENAME FROM inserted;
+	PRINT(@NewEmployeeName);
+	IF EXISTS (SELECT EMPNO FROM EMP WHERE ENAME = @NewEmployeeName)
+	BEGIN
+		PRINT('This employee name already exists !');
+		ROLLBACK TRANSACTION;
+	END
+
+	ELSE
+	BEGIN
+		PRINT('New employee added.');
+	END
+END
+GO
+
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
+VALUES
+(6670,	'TardTard',		'PRESIDENT',	NULL,	'0981-11-17',	5500,	NULL,	10)
+
+SELECT * FROM EMP WHERE EMPNO < 7000;
+
+DISABLE TRIGGER NewEmployeeHasSalLowerThanCeo ON EMP;
