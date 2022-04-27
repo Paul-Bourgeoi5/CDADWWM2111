@@ -1,0 +1,32 @@
+{% include "header.html" %}
+
+<h1>{{ title }}</h1>
+<p><a href="/candidates/add">Ajouter un nouveau candidat</a></p>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Slogan</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for candidate in model %}
+            <tr>
+                <td>{{ candidate.id }}</td>
+                <td>{{ candidate.lastname }}</td>
+                <td>{{ candidate.firstname }}</td>
+                <td>{{ candidate.slogan }}</td>
+                <td>
+                    <a href="/candidates/edit/{{ candidate.id }}">Modifier</a> 
+                    <a href="/candidates/delete/{{ candidate.id }}">Supprimer</a> 
+                </td>
+            </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+
+{% include "footer.html" %}

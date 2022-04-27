@@ -1,0 +1,26 @@
+{% include "header.html" %}
+
+<h1>Ajouter un nouveau candidat</h1>
+
+<p><a href="/candidates">Retour à la liste des candidats</a></p>
+
+
+<form action="" method="post">
+    <div>
+        <label for="lastname">Nom: </label> <input type="text" id="lastname" name="lastname" value="{{ model.lastname }}" required>
+    </div>
+    
+    <div>
+        <label for="firstname">Prénom: </label> <input type="text" id="firstname" name="firstname" value="{{ model.firstname }}" required>
+    </div>
+    
+    <div>
+        <label for="slogan">Slogan: </label> <input type="text" id="slogan" name="slogan" value="{{ model.slogan }}">
+    </div>
+
+    <div>
+        <button type="submit">Enregistrer le nouveau candidat</button>
+    </div>
+</form>
+
+{% include "footer.html" %}

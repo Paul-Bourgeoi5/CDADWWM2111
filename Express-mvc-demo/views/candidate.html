@@ -1,0 +1,18 @@
+{% include "header.html" %}
+
+<h1>{{ title }}</h1>
+
+<p><a href="/candidates">Retour à la liste des candidats</a></p>
+
+<h2>Candidat N°{{ model.id }}</h2>
+
+<ul>
+    <li>{{ model.lastname }} {{ model.firstname }}</li>
+    <li>{{ model.slogan }}</li>
+</ul>
+
+<p>
+    <a href="/candidates/edit/{{model.id}}">Modifier ce candidat</a> | <a href="/candidates/delete/:id">Supprimer ce candidat</a>
+</p>
+
+{% include "footer.html" %}

@@ -1,0 +1,39 @@
+{% include "header.html" %}
+
+<h1>Modifier un candidat</h1>
+
+<p><a href="/candidates">Retour à la liste des candidats</a></p>
+
+<h2>Candidat N°{{ model.id }}</h2>
+
+{% for error in errors %}
+    <p class="danger">{{error.param}} : {{error.msg}}</p>
+{% endfor %}
+
+<form action="" method="post">
+    
+    
+    <input type="hidden" name="id" value="{{ model.id }}">
+
+    <div>
+        <label for="lastname">Nom: </label> <input type="text" id="lastname" name="lastname" value="{{ model.lastname }}" >
+    </div>
+    
+    <div>
+        <label for="firstname">Prénom: </label> <input type="text" id="firstname" name="firstname" value="{{ model.firstname }}" required pattern="[a-zA-Z]{2,16}" title="Toto pas content">
+    </div>
+    
+    <div>
+        <label for="slogan">Slogan: </label> <input type="text" id="slogan" name="slogan" value="{{ model.slogan }}">
+    </div>
+
+    <div>
+        <button type="submit">Enregistrer les modifications</button>
+    </div>
+</form>
+
+<p>
+    <a href="/candidates/{{ model.id }}">Retour à la fiche candidat</a> | <a href="/candidates/delete/{{ model.id }}">Supprimer ce candidat</a>
+</p>
+
+{% include "footer.html" %}
