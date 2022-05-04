@@ -11,6 +11,18 @@ exports.getAll = () => {
 }
 
 /**
+ * Retourne la liste des candidats
+ * @returns {Promise} le jeu de résultats dans un tableau
+ */
+ exports.getIndices = (indices, marqueurs) => {
+    const sql = `SELECT id, lastname, firstname, slogan FROM candidates WHERE id IN (${marqueurs})`
+    console.log("sql : " + sql + "\n params : " + indices)
+    return repo.getAll(sql, indices)
+
+}
+
+
+/**
  * Retourne un candidat 
  * @param {Int} id Identifiant du candidat à retourner 
  * @returns {Promise} le candidat sous forme d'objet ou undefined si identifiant inexistant

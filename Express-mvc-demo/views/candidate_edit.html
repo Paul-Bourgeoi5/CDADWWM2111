@@ -6,25 +6,38 @@
 
 <h2>Candidat N°{{ model.id }}</h2>
 
-{% for error in errors %}
-    <p class="danger">{{error.param}} : {{error.msg}}</p>
-{% endfor %}
+
 
 <form action="" method="post">
-    
-    
+
     <input type="hidden" name="id" value="{{ model.id }}">
 
+    <!-- Input caché contenant le token csrf qui sera vérifié pour certifié l'origine des données du formulaire. -->
+    <input type="hidden" name="csrf_token" value="{{ token }}">
+
+    {% unless errors.lastname == undefined %}
+        <p class="danger">{{errors.lastname.param}} : {{errors.lastname.msg}}</p>
+    {% endunless %}
     <div>
         <label for="lastname">Nom: </label> <input type="text" id="lastname" name="lastname" value="{{ model.lastname }}" >
+
     </div>
-    
+
+    {% if errors.firstname != undefined %}
+        <p class="danger">{{errors.firstname.param}} : {{errors.firstname.msg}}</p>
+    {% endif %}
     <div>
         <label for="firstname">Prénom: </label> <input type="text" id="firstname" name="firstname" value="{{ model.firstname }}" required pattern="[a-zA-Z]{2,16}" title="Toto pas content">
+
     </div>
     
+
+    {% if errors.slogan != undefined %}
+        <p class="danger">{{errors.slogan.param}} : {{errors.slogan.msg}}</p>
+    {% endif %}
     <div>
         <label for="slogan">Slogan: </label> <input type="text" id="slogan" name="slogan" value="{{ model.slogan }}">
+
     </div>
 
     <div>

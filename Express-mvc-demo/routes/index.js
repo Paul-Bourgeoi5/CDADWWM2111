@@ -47,6 +47,7 @@ router.post('/candidates/add', candidatesController.add_post)
 
 router.get('/candidates/:id', candidatesController.getById)
 router.get('/candidates', candidatesController.index)
+router.post('/candidates', candidatesController.getManyId)
 
 
 /* ROUTES PAR DEFAUT & ERREURS */

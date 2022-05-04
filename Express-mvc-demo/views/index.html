@@ -2,31 +2,39 @@
 
 <h1>{{ title }}</h1>
 <p><a href="/candidates/add">Ajouter un nouveau candidat</a></p>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Slogan</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for candidate in model %}
-            <tr>
-                <td>{{ candidate.id }}</td>
-                <td>{{ candidate.lastname }}</td>
-                <td>{{ candidate.firstname }}</td>
-                <td>{{ candidate.slogan }}</td>
-                <td>
-                    <a href="/candidates/edit/{{ candidate.id }}">Modifier</a> 
-                    <a href="/candidates/delete/{{ candidate.id }}">Supprimer</a> 
-                </td>
-            </tr>
-        {% endfor %}
-        
-    </tbody>
-</table>
 
+<form action="" method="post">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Slogan</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidate in model %}
+                <tr>
+                    <td>{{ candidate.id }}</td>
+                    <td>{{ candidate.lastname }}</td>
+                    <td>{{ candidate.firstname }}</td>
+                    <td>{{ candidate.slogan }}</td>
+                    <td>
+                        <a href="/candidates/edit/{{ candidate.id }}">Modifier</a> 
+                        <a href="/candidates/delete/{{ candidate.id }}">Supprimer</a> 
+                    </td>
+
+                    <td>
+                        <input type="checkbox" name="test" value="{{ candidate.id }}">
+                    </td>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+
+    <button type="submit">Get specific candidates</button>
+</form>
 {% include "footer.html" %}
