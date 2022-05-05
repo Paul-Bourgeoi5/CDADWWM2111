@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+	<entrées>
+		<entrée nom="salade" prix="99.09€" description="Une très bonne salade que vous n'oublierez pas (surtout son prix)" />
+		<entrée nom="coleslaw" prix="0.20€" description="Mélange de carotte et choux blanc avec sa petite sauce" />
+	</entrées>
+	<plats>
+		<plat prix="3.83€">
+			<nom>Steak Frites</nom>
+			<description>Steak trop cuit et frites molles.</description>
+		</plat>
+		<plat prix="230€">
+			<nom>Poulet Patates</nom>
+			<description>Poulet pas cuit et patates sur son lit de terre.</description>
+		</plat>
+		<plat prix="2.83€">
+			<nom>Haricots purée</nom>
+			<description>Haricots verts et purée Vico</description>
+		</plat>
+	</plats>
+	<desserts>
+		<dessert>
+			<nom>Tarte aux myrtilles</nom>
+			<prix>5€</prix>
+			<description>Une tarte avec des myrtilles fraîchement cueillies dans les Vosges</description>
+		</dessert>
+		<dessert>
+			<nom>Bananasplit</nom>
+			<prix>0.00€</prix>
+			<description>Resté au soleil pendant 6 jours. Mais on ne vous a rien dit.</description>
+		</dessert>
+	</desserts>
+</menu>

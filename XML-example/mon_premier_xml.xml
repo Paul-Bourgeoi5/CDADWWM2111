@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<garage>
+	<adresse>12 rue du Général Toto 24784 QUELQUEPART</adresse>
+	<horaires>
+		<lundi>
+			<ouverture>8:00</ouverture>
+			<fermeture>12:00</fermeture>
+		</lundi>
+		<mercredi>
+			<ouverture>14:00</ouverture>
+			<fermeture>18:00</fermeture>
+		</mercredi>
+	</horaires>
+	<voitures>
+		<voiture>
+			<marque>FIAT</marque>
+			<modèle>multipla</modèle>
+			<année>1970</année>
+		</voiture>
+		<voiture>
+			<marque>Audi</marque>
+			<modèle>RS6</modèle>
+			<année>2021</année>
+		</voiture>
+	<voitures>
+	<motos>
+		<moto cylindrée="1200">
+			<marque>Harley Davidson</marque>
+			<modèle>forty eight</modèle>
+		<moto>
+		<!-- Après ce commentaire, des motos sans infos-->
+		<moto></moto>
+		<moto />
+	</motos>
+</garage>
