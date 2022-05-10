@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="CDA2111">
+    <meta name="keywords" content="nutriscore, céréales, protéines">
+    <meta name="description" content="Affichage de céréales venant d'une api.">
+    <title>Céréales</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Script pour utilisation de Vue.js-->
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Cereals</h1>
+
+            <!-- Formulaire de recherche de céréales par nom ou par nutriscore et catégorie. -->
+            <form action="#">
+
+                <!-- Recherche par nom. -->
+                <fieldset>
+                    <legend>
+                        <Label for="rechercher">Rechercher</Label>
+                    </legend>
+                    <input @input="filterByName" type="search" placeholder="Nom du céréale" id="rechercher"> <!-- @input="filterByName" déclare l'utilisation de la fonction filterByName sur un événement de type input-->
+                </fieldset>
+
+                <!-- Recherche par nutriscore et catégorie. -->
+                <fieldset>
+                    <legend>Filtrer</legend>
+                    <!-- Filtre par nutriscore. Un événement de changement sur les checkbox enfants du fieldset lancera la fonction filterByNutriscore. -->
+                    <fieldset @change="filterByNutriScore" class="nutriscore-container"> 
+                        <legend>
+                            Nutriscore
+                        </legend>
+                        <label for="a">A</label>
+                        <input type="checkbox" name="nutriscore" id="a" value="a"> <!-- On aurait pu mettre le @change="filterByNutriScore" sur chaque checkbox plutôt qu'une fois sur le fieldset. -->
+
+                        <label for="b">B</label>
+                        <input type="checkbox" name="nutriscore" id="b" value="b"> <!-- On aurait pu mettre le @change="filterByNutriScore" sur chaque checkbox plutôt qu'une fois sur le fieldset. -->
+
+                        <label for="c">C</label>
+                        <input type="checkbox" name="nutriscore" id="c" value="c"> <!-- On aurait pu mettre le @change="filterByNutriScore" sur chaque checkbox plutôt qu'une fois sur le fieldset. -->
+
+                        <label for="d">D</label>
+                        <input type="checkbox" name="nutriscore" id="d" value="d"> <!-- On aurait pu mettre le @change="filterByNutriScore" sur chaque checkbox plutôt qu'une fois sur le fieldset. -->
+
+                        <label for="e">E</label>
+                        <input type="checkbox" name="nutriscore" id="e" value="e"> <!-- On aurait pu mettre le @change="filterByNutriScore" sur chaque checkbox plutôt qu'une fois sur le fieldset. -->
+                        
+                    </fieldset>
+
+                    <!-- Filtre par catégories. Le changement sur le select lancera un événement change qui lancera la fonction filterByCategory-->
+                    <fieldset>
+                        <legend>Catégorie</legend>
+                        <select @change="filterByCategory" list="categories" id="categories">
+                            <option value="tous">Tous</option>
+                            <option value="sans-sucre">Sans sucre</option>
+                            <option value="sans-sel">Pauvre en sel</option>
+                            <option value="boost">Boost</option>
+                        </select>
+                    </fieldset>
+                </fieldset>
+            </form>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th class="text-left">NOM</th>
+                    <th>CALORIES</th>
+                    <th>PROTÉINES</th>
+                    <th>SEL</th>
+                    <th>FIBRES</th>
+                    <th>GLUCIDES</th>
+                    <th>SUCRE</th>
+                    <th>POTASSIUM</th>
+                    <th>VITAMINES</th>
+                    <th>ÉVALUATION</th>
+                    <th>NS</th>
+                    <th>DEL</th>
+                </tr>
+            </thead>
+            <tbody id="perfect-body">
+                <!-- Création d'une ligne du tableau pour chaque céréale dans le tableau renvoyé par la fonction computed filteredCereals. -->
+                <tr v-for="cereal in filteredCereals" :key="cereal.id">
+                    <td class="identifiant">{{ cereal.id }}</td>
+                    <td class="text-left">{{ cereal.name }}</td>
+                    <td>{{ cereal.calories }}</td>
+                    <td>{{ cereal.protein }}</td>
+                    <td>{{ cereal.sodium }}</td>
+                    <td>{{ cereal.fiber }}</td>
+                    <td>{{ cereal.carbo }}</td>
+                    <td>{{ cereal.sugars }}</td>
+                    <td>{{ cereal.potass }}</td>
+                    <td>{{ cereal.vitamins }}</td>
+                    <td>{{ cereal.rating }}</td>
+                    <td :class="cereal.nutriScore">{{ cereal.nutriScore }}</td>
+                    <td>
+                        <button @click="removeCereal(cereal)">X</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td>{{ countElement }} éléments</td>
+                    <td>Moyenne calories {{ avgCalories }}</td>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
+
+
+
+
+
+
+
+    <script>
+        // Instanciation de notre application Vue.js. On stocke cette instance dans la constante vue qui pourra être utilisée dans console du navigateur. 
+    const vue = Vue.createApp({
+        // data() est une fonction qui renvoie les variables utilisées par notre application Vue.js. Pour y accéder dans notre application il faut utiliser this.nomMaVariable.
+        data() {
+        return {
+            cereals: null,
+            filterName: '',
+            filterNutri: [],
+            filterCategory: "tous",
+            countElement: 0,
+            avgCalories: 0
+
+        }
+        },
+        // methods contient la liste des méthodes utilisées par norte application Vue.js.
+        methods: {
+            // initCereals import les données venant de notre API de céréales.
+            async initCereals(){
+                this.cereals = null;
+                // Récupération des données.
+                const res = await fetch("https://arfp.github.io/tp/web/frontend/cereals/cereals.json");
+                // Conversion des données au format json.
+                let jsonData = await res.json();
+                // Stockage des données qui nous intéressent dans notre tableau de céréales.
+                this.cereals = jsonData.data;
+
+                // Nettoyer les données
+                this.cereals.forEach((cereal) => {
+                    // Ajout du nutriScore à chaque céréale
+                    cereal.nutriScore = this.checkNutriScore(cereal)
+                    // Supprimer les valeurs -1 qui représentent l'absence de données
+                    for(const property in cereal){
+                        if (cereal[property] === -1)
+                            cereal[property] = null;
+                    }
+                })
+            },
+
+            // Fonction pour définir le nutriscore d'une céréale passée en paramètre.
+            checkNutriScore(cereal) {
+                let result;
+                if(cereal.rating > 80){
+                    result = "A";
+                } else if (cereal.rating > 70) {
+                    result = "B";
+                } else if (cereal.rating > 55) {
+                    result = "C";
+                } else if (cereal.rating > 35) {
+                    result = "D";
+                } else {
+                    result = "E";
+                }
+                return result;
+            },
+            // Suppression dans notre tableau de céréales d'une céréale passée en paramètre. Elle sera supprimée jusqu'au rechargement de notre page. 
+            removeCereal(cerealToBeDeleted){
+                this.cereals = this.cereals.filter((cereal) => cereal.id != cerealToBeDeleted.id); //filter permet de filtrer un tableau. Ici on ne garde que les céréales dont l'id est différent de l'id du céréale passé en paramètre de notre fonction.
+            },
+            // Fonction appelée lors d'une modification du champ de recherche par nom. On met à jour la valeur du filtre par nom.
+            filterByName(){
+                this.filterName = event.target.value;
+            },
+            // Fonction appelée lors d'une modification du champ de recherche par nutriscore. On met à jour la valeur du filtre par nutriscore.
+            filterByNutriScore(){
+                // Récupération du fieldset qui contient les checkboxes.
+                const fieldset = event.target.parentNode
+                // Récupération de chaque input de type checkboxes qui sont cochées.
+                const checked = fieldset.querySelectorAll('input[type=checkbox]:checked')
+                let result = []
+                // On stocke les valeurs des éléments cochés.
+                checked.forEach((input) => result.push(input.value) ) 
+                this.filterNutri = result;
+            },
+            // Fonction appelée lors d'une modification du champ de recherche par catégorie. On met à jour la valeur du filtre par catégorie.
+            filterByCategory(){
+                console.log(event.target.value)
+                this.filterCategory = event.target.value
+            }
+        },
+        computed: {
+            // Création d'un tableau de céréales filtré qui est créé en se basant sur le tableau de céréales provenant de l'API. 
+            filteredCereals(){
+                let result;
+
+                // filtre sur le nom du céréale
+                if(this.filterName.length > 0){
+                    // On ne garde que les céréales dont le nom comprend la valeur de filterName.
+                    result = this.cereals.filter((cereal) => cereal.name.toLowerCase().includes(this.filterName.toLowerCase()))
+                } else {
+                    result = this.cereals
+                }
+                
+
+                // Filtre sur le nutriscore des céréales uniquement si au moins une case est cochée.
+                if(this.filterNutri.length > 0) {
+                    // On ne garde que les céréales dont le nutriscore correspond aux nutriscore cochés
+                    result = result.filter(cereal => this.filterNutri.includes(cereal.nutriScore.toLowerCase()))
+                }
+
+
+                // Filtre sur la catégorie des céréales
+                switch (this.filterCategory) {
+                    // On vérifie que la céréale est sans sucre.
+                    case "sans-sucre":
+                        result = result.filter((cereal) => cereal.sugars < 1 && cereal.sugars != null)
+                        break
+                    // On vérifie que la céréale est ffaible en sel.
+                    case "sans-sel":
+                        result = result.filter((cereal) => cereal.sodium < 50 && cereal.sodium != null)
+                        break
+                    // On vérifie que la céréale contient des vitamines et des fibres.
+                    case "boost":
+                        result = result.filter((cereal) => cereal.vitamins >= 25 && cereal.fiber >= 10)
+                        break
+                    default:
+                        break
+                }
+                
+                
+                if (result != null) {
+                    // Compte du nombre de céréales
+                    this.countElement = result.length
+
+                    // Calcul de la moyenne des calories des céréales affichées
+                    let tmpSumCalories = 0;
+                    // Calcul de la somme des calories
+                    result.forEach(cereal => {
+                        tmpSumCalories += cereal.calories
+                    })
+                    // Calcul de la moyenne avec 2 chiffres après la virgule
+                    this.avgCalories = Math.round(tmpSumCalories/this.countElement *100)/100
+                }
+                
+
+                return result;
+            }
+
+
+        },
+        // Lorsque l'application est mise en place, le code de mounted se lance immédiatement.
+        mounted() {
+            // On essaie de récupérer les données de l'API.
+            try{
+                this.initCereals();
+            } catch(err) {
+                console.error(err)
+            }
+            console.log("Cereals prêts");
+        }
+    }).mount('#app')
+    </script>
+</body>
+</html>
